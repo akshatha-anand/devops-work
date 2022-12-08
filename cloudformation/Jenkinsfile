@@ -1,6 +1,6 @@
 pipeline {
     agent any
-   options(
+   properties(
     [parameters(
         [choice(
 
@@ -13,7 +13,7 @@ pipeline {
         stage('Submit Stack') {
             steps {
             sh "selected envirnment ${choices}"
-            sh "aws cloudformation create-stack --stack-name demo-stack-2 --template-body file://cloudformation/s3.json --region 'us-east-1'"
+            sh "aws cloudformation create-stack --stack-name demo-stack-2 --template-body file://cloudformation/s3.json --region 'us-east-1' ${choices}"
             }
          }
     }
