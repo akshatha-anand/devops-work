@@ -3,9 +3,11 @@ pipeline {
 properties(
     [parameters(
         [choice(
-            name: 'ENV'
+
             choices: ['dev', 'uat'], 
-            description: 'Select environment to build')]
+            description: 'Select environment to build',
+            name: 'ENV'
+        )]
         )])
     stages {
         stage('Submit Stack') {
