@@ -1,21 +1,17 @@
 pipeline {
     agent any
-    parameters {
-        choice {
-            name: Env
-            choices : ['dev','uat']
-            
-        }
-
-    }
+properties(
+    [parameters(
+        [choice(
+            name: 'ENV'
+            choices: ['dev', 'uat'], 
+            description: 'Select environment to build')]
+        )])
     stages {
         stage('Submit Stack') {
             steps {
-            sh "aws cloudformation create-stack --stack-name demo-stack-3 --template-body file://cloudformation/s3.json --region 'us-east-1'"
+            sh "aws cloudformation create-stack --stack-name demo-stack-2 --template-body file://cloudformation/s3.json --region 'us-east-1'"
             }
          }
     }
-            
-}
-
-
+       
